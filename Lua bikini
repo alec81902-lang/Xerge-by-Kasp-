@@ -173,7 +173,7 @@ end
             Spectate = false,
             PingBased = false,
             UseIndex = false,
-            AntiAimViewer = false,
+            AntiAimViewer = true,
             AutoSelect = {
                 Enabled = false,
                 Cooldown = {
@@ -182,10 +182,10 @@ end
                 }
             },
             Checks = {
-                Enabled = false,
-                Knocked = false,
+                Enabled = true,
+                Knocked = true,
                 Crew = false,
-                Wall = false,
+                Wall = true,
                 Grabbed = false,
                 Vehicle = false
             },
@@ -198,7 +198,7 @@ end
                 Vertical = 0.134
             },
             Resolver = {
-                Enabled = false,
+                Enabled = true,
                 Smoothness = 0.5
             },
             Fov = {
