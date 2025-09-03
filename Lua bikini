@@ -183,7 +183,7 @@ end
             },
             Checks = {
                 Enabled = false,
-                Knocked = true,
+                Knocked = false,
                 Crew = false,
                 Wall = false,
                 Grabbed = false,
