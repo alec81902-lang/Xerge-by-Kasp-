@@ -182,8 +182,8 @@ end
                 }
             },
             Checks = {
-                Enabled = false,
-                Knocked = false,
+                Enabled = true,
+                Knocked = true,
                 Crew = false,
                 Wall = false,
                 Grabbed = false,
@@ -198,7 +198,7 @@ end
                 Vertical = 0.134
             },
             Resolver = {
-                Enabled = true,
+                Enabled = false,
                 Smoothness = 0.5
             },
             Fov = {
