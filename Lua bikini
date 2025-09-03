@@ -182,8 +182,8 @@ end
                 }
             },
             Checks = {
-                Enabled = true,
-                Knocked = true,
+                Enabled = false,
+                Knocked = false,
                 Crew = false,
                 Wall = false,
                 Grabbed = false,
