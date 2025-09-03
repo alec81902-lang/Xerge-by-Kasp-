@@ -173,7 +173,7 @@ end
             Spectate = false,
             PingBased = false,
             UseIndex = false,
-            AntiAimViewer = true,
+            AntiAimViewer = false,
             AutoSelect = {
                 Enabled = false,
                 Cooldown = {
@@ -185,7 +185,7 @@ end
                 Enabled = true,
                 Knocked = true,
                 Crew = false,
-                Wall = true,
+                Wall = false,
                 Grabbed = false,
                 Vehicle = false
             },
