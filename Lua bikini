@@ -2143,21 +2143,13 @@ main:Button({Name = "Load Button", Callback = function()
                 end
                 ButtonAlreadyLoaded = true
 
-main:Button({
-    Name = "Kasp",
-    Callback = function()
-        -- verificare să nu fie încărcat de două ori
-        if KaspAlreadyLoaded then
-            library:Notification("Kasp's mini hub este deja încărcat.", 5, library.Accent)
-            return
-        end
-
-        KaspAlreadyLoaded = true
-
-        -- execută script-ul lui Kasp
-        loadstring(game:HttpGet("https://pastebin.com/raw/zwzZf0uW"))();
-    end
-})
+main:Button({Name = "Load Button", Callback = function()
+                if ButtonAlreadyLoaded then
+                library:Notification("Already Loaded.", 5, library.Accent)
+                return
+                end
+loadstring(game:HttpGet("https://raw.githubusercontent.com/alec81902-lang/Reset-button-by-Kasp-/refs/heads/main/Xd"))();
+                ButtonAlreadyLoaded = true
 
 do
 local ScreeenGui = Instance.new("ScreenGui")
