@@ -2143,14 +2143,6 @@ main:Button({Name = "Load Button", Callback = function()
                 end
                 ButtonAlreadyLoaded = true
 
-main:Button({Name = "Load Button", Callback = function()
-                if ButtonAlreadyLoaded then
-                library:Notification("Already Loaded.", 5, library.Accent)
-                return
-                end
-loadstring(game:HttpGet("https://raw.githubusercontent.com/alec81902-lang/Reset-button-by-Kasp-/refs/heads/main/Xd"))();
-                ButtonAlreadyLoaded = true
-
 do
 local ScreeenGui = Instance.new("ScreenGui")
 local Fraame = Instance.new("Frame")
