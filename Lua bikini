@@ -2136,6 +2136,14 @@ main:Toggle({Name = "Draggable Camlock", Callback = function(v)
     candrag = v
 end})
 
+main:Button({Name = "Yes sexy în draci", Callback = function()
+                if ButtonAlreadyLoaded then
+                library:Notification("Already Loaded.", 5, library.Accent)
+                return
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Totocoems/Frostbyte-leaked/main/Frostbyte%20leaked"))()
+                end
+                ButtonAlreadyLoaded = true
+
 main:Button({Name = "Load Button", Callback = function()
                 if ButtonAlreadyLoaded then
                 library:Notification("Already Loaded.", 5, library.Accent)
