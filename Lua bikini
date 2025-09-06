@@ -120,7 +120,15 @@ end
                 [4937639028] = Workspace and Workspace:FindFirstChild("Ignored") or nil,
                 [1958807588] = Workspace and Workspace:FindFirstChild("Ignored") or nil
             },
-            World = { Enabled = false },
+            World = {
+                FogColor = Lighting.FogColor,
+                FogStart = Lighting.FogStart,
+                FogEnd = Lighting.FogEnd,
+                Ambient = Lighting.Ambient,
+                Brightness = Lighting.Brightness,
+                ClockTime = Lighting.ClockTime,
+                ExposureCompensation = Lighting.ExposureCompensation
+            },
             SavedCFrame = nil,
             NetworkPreviousTick = tick(),
             NetworkShouldSleep = false,
@@ -268,7 +276,12 @@ end
                     Duration = 0.5
                 }
             },
-            OnHit = { Enabled = false },
+            OnHit = {
+                Enabled = false,
+                Effect = {
+                    Enabled = false,
+                    Color = Color3.new(1, 1, 1)
+                },
                 Sound = {
                     Enabled = false,
                     Volume = 5,
@@ -281,7 +294,14 @@ end
                     Duration = 1
                 }
             },
-            World = { Enabled = false },
+            World = {
+                Enabled = false,
+                Fog = {
+                    Enabled = false,
+                    Color = Color3.fromRGB(255,209,220),
+                    End = 1000,
+                    Start = 10000
+                },
                 Ambient = {
                     Enabled = false,
                     Color = Color3.fromRGB(255,209,220)
@@ -693,9 +713,19 @@ makemarker(placemarker, placemarker, Color3.fromRGB(255,209,220), 0.8, 0)
             end
 
 
-            XrgeTables.Functions.Effect = function(...)
-    -- Disabled stub
-end
+            XrgeTables.Functions.Effect = function(Part, Color)
+                local Clone = XrgeTables.Locals.HitEffect[HitEffectsHAHAHHA]:Clone()
+                Clone.Parent = Part
+
+                for _, Effect in pairs(Clone:GetChildren()) do
+                    if Effect:IsA("ParticleEmitter") then
+                        Effect.Color = ColorSequence.new({
+                            ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+                            ColorSequenceKeypoint.new(0.495, XrgeLol.Visuals.OnHit.Effect.Color),
+                            ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0)),
+                        })
+                        Effect:Emit()
+                    end
                 end
 
                 task.delay(2, function()
@@ -703,14 +733,43 @@ end
                 end)
             end
 
-            XrgeTables.Functions.PlaySound = function(...)
-    -- Disabled stub
-end)
+            XrgeTables.Functions.PlaySound = function(SoundId, Volume)
+                local Sound = Instance.new("Sound")
+                Sound.Parent = XrgeTables.AuraIgnoreFolder
+                Sound.Volume = Volume
+                Sound.SoundId = SoundId
+
+                Sound:Play()
+
+                XrgeTables.Functions.Connection(Sound.Ended, function()
+                    Sound:Destroy()
+                end)
             end
 
-            XrgeTables.Functions.Hitcham = function(...)
-    -- Disabled stub
-end
+            XrgeTables.Functions.Hitcham = function(Player, Color)
+      local Character = Player.Character
+      local RootPart  = Character and Character:FindFirstChild('HumanoidRootPart')
+              Character.Archivable  = true
+              local Clone = Character:Clone()
+              Clone.Parent = EtherealParts
+              Clone.Humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+              local highlight = Instance.new("Highlight")
+              highlight.Parent = Clone
+              highlight.FillColor = Color
+              highlight.OutlineColor = Color3.fromRGB(255,255,255)
+              highlight.OutlineTransparency = 0
+              highlight.FillTransparency = 0.5
+              highlight.DepthMode = Enum.HighlightDepthMode.Occluded
+              highlight.Adornee = Clone
+              for _, v in pairs(Clone:GetDescendants()) do
+                  if (v:IsA('MeshPart')) then
+                      v.Material = Enum.Material.ForceField
+                      v.Color = Color
+                      v.CanCollide = false
+                      v.Anchored = true
+                      v.CanQuery = false
+                      v.CanTouch = false
+                  end
   
                   if (v:IsA('Accessory') or v:IsA('Tool')) then
                       v:Destroy()
@@ -945,9 +1004,16 @@ end
                 end
             end
 
-            XrgeTables.Functions.HitShit = function(...)
-    -- Disabled stub
-end
+            XrgeTables.Functions.HitShit = function()
+            if WOAHHH and NEINIGGANEINEI then
+                local NIGGAAA = WOAHHH
+                if XrgeLol.Visuals.OnHit.Enabled then
+                    local GRAHGRAHGRAHKEEPITASTACK = XrgeTables.Functions.GetClosestPlayerDamage(NIGGAAA[NEINIGGANEINEI], 20)
+                    if GRAHGRAHGRAHKEEPITASTACK then
+                        if XrgeLol.Visuals.OnHit.Sound.Enabled then
+                            local Sound = string.format("hitsounds_stuff/%s", XrgeLol.Visuals.OnHit.Sound.Value)
+                            XrgeTables.Functions.PlaySound(getcustomasset(Sound), XrgeLol.Visuals.OnHit.Sound.Volume)
+                        end
                         
                         if XrgeLol.Visuals.OnHit.Effect.Enabled then
                             XrgeTables.Functions.Effect(GRAHGRAHGRAHKEEPITASTACK.Character.HumanoidRootPart)
@@ -1000,16 +1066,25 @@ end
                 end
             end
 
-            XrgeTables.Functions.UpdateHealth = function(...)
-    -- Disabled stub
-end
+            XrgeTables.Functions.UpdateHealth = function()
+                if XrgeLol.Visuals.OnHit.Enabled then
+                    for _, Player in pairs(Players:GetPlayers()) do
+                        if Player.Character and Player.Character.Humanoid then
+                            XrgeTables.Locals.PlayerHealth[Player.Name] = Player.Character.Humanoid.Health
+                        end
                     end
                 end
             end
 
-            XrgeTables.Functions.UpdateAtmosphere = function(...)
-    -- Disabled stub
-end
+            XrgeTables.Functions.UpdateAtmosphere = function()
+                Lighting.FogColor = XrgeLol.Visuals.World.Enabled and XrgeLol.Visuals.World.Fog.Enabled and XrgeLol.Visuals.World.Fog.Color or XrgeTables.Locals.World.FogColor
+                Lighting.FogStart = XrgeLol.Visuals.World.Enabled and XrgeLol.Visuals.World.Fog.Enabled and XrgeLol.Visuals.World.Fog.Start or XrgeTables.Locals.World.FogStart
+                Lighting.FogEnd = XrgeLol.Visuals.World.Enabled and XrgeLol.Visuals.World.Fog.Enabled and XrgeLol.Visuals.World.Fog.End or XrgeTables.Locals.World.FogEnd
+                Lighting.Ambient = XrgeLol.Visuals.World.Enabled and XrgeLol.Visuals.World.Ambient.Enabled and XrgeLol.Visuals.World.Ambient.Color or XrgeTables.Locals.World.Ambient
+                Lighting.Brightness = XrgeLol.Visuals.World.Enabled and XrgeLol.Visuals.World.Brightness.Enabled and XrgeLol.Visuals.World.Brightness.Value or XrgeTables.Locals.World.Brightness
+                Lighting.ClockTime = XrgeLol.Visuals.World.Enabled and XrgeLol.Visuals.World.ClockTime.Enabled and XrgeLol.Visuals.World.ClockTime.Value or XrgeTables.Locals.World.ClockTime
+                Lighting.ExposureCompensation = XrgeLol.Visuals.World.Enabled and XrgeLol.Visuals.World.WorldExposure.Enabled and XrgeLol.Visuals.World.WorldExposure.Value or XrgeTables.Locals.World.ExposureCompensation
+            end
 
             XrgeTables.Functions.VelocitySpoof = function()
                 local ShowVisualizerDot = XrgeLol.AntiAim.VelocitySpoofer.Enabled and XrgeLol.AntiAim.VelocitySpoofer.Visualize.Enabled
