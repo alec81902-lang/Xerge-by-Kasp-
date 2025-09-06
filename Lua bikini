@@ -2337,3 +2337,38 @@ end)
             XrgeLol.Visuals.OnHit.Sound.Value = v
         end
     })
+
+
+--[[ ===== SAFE STUBS ADDED TO PREVENT NIL FUNCTION/TABLE ERRORS =====
+These maintain compatibility after removing World Settings & On-Hit visuals.
+They do nothing, so combat logic remains unaffected.
+]]--
+
+-- ensure nested Visuals tables exist so UI callbacks don't index nil
+XrgeLol = XrgeLol or {}
+XrgeLol.Visuals = XrgeLol.Visuals or {}
+XrgeLol.Visuals.World = XrgeLol.Visuals.World or {
+    Enabled = false,
+    Ambient = {Enabled = false, Color = Color3.new(1,1,1)},
+    ClockTime = {Enabled = false, Value = 12},
+    Brightness = {Enabled = false, Value = 2}
+}
+XrgeLol.Visuals.OnHit = XrgeLol.Visuals.OnHit or {
+    Enabled = false,
+    Sound = {Enabled = false, Volume = 1, Value = ""},
+    Effect = {Enabled = false, Color = Color3.new(1,1,1), Value = ""},
+    Chams = {Enabled = false, Color = Color3.new(1,1,1)}
+}
+
+-- provide no-op functions for removed visual/effect routines
+XrgeTables = XrgeTables or {}
+XrgeTables.Functions = XrgeTables.Functions or {}
+
+XrgeTables.Functions.UpdateAtmosphere = XrgeTables.Functions.UpdateAtmosphere or function() end
+XrgeTables.Functions.Effect = XrgeTables.Functions.Effect or function(...) end
+XrgeTables.Functions.PlaySound = XrgeTables.Functions.PlaySound or function(...) end
+XrgeTables.Functions.Hitcham = XrgeTables.Functions.Hitcham or function(...) end
+XrgeTables.Functions.HitShit = XrgeTables.Functions.HitShit or function(...) end
+XrgeTables.Functions.UpdateHealth = XrgeTables.Functions.UpdateHealth or function(...) end
+
+--[[ ===== END SAFE STUBS ===== ]]--
