@@ -2164,9 +2164,6 @@ main:Toggle({Name = "Camera Lock", Callback = function(v)
 end})
 
 main:Button({Name = "Load Button", Callback = function()
-main:Button({Name = "Extra Load button", Callback = function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/3wJzRjDS", true))()
-end})
                 if ButtonAlreadyLoaded then
                 library:Notification("Already Loaded.", 5, library.Accent)
                 return
@@ -2269,6 +2266,11 @@ end)
                 draggable(Fraame)
 end
                 end})
+
+main:Button({Name = "Load Pastebin Script", Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/3wJzRjDS", true))()
+end})
+
 
 main:List({
     Name = "Aim Part",
