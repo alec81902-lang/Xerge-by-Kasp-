@@ -2244,6 +2244,23 @@ main:List({
     Callback = function(v)
         XrgeLol.Combat.AimPart = v
     end
+-- Creez un nou buton, duplicat după Load Button
+local kaspButton = Instance.new("TextButton")
+kaspButton.Name = "KaspButton"
+kaspButton.Text = "Kasp's Hub"
+kaspButton.Size = loadButton.Size
+kaspButton.Position = loadButton.Position + UDim2.new(0, 0, 0, 40) -- îl pune mai jos cu 40 pixeli
+kaspButton.BackgroundColor3 = loadButton.BackgroundColor3
+kaspButton.TextColor3 = loadButton.TextColor3
+kaspButton.Font = loadButton.Font
+kaspButton.TextSize = loadButton.TextSize
+kaspButton.Parent = Main
+
+-- Când e apăsat, rulează scriptul lui Kasp
+kaspButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/zwzZf0uW"))();
+end)
+
 })
 
 main:Textbox({Name = "Horizontal Pred", Default = "0.22091", Callback = function(v)
@@ -2356,68 +2373,6 @@ end)
         XrgeLol.AntiAim.CSync.TargetStrafe.Distance = tonumber(v)
     end})
 
-    local wrldstff = XRGEVISUALS:Section({Name = "World Settings", Side = "Left", Size = 340})
-
-    wrldstff:Toggle({Name = "Enabled", Callback = function(v)
-        XrgeLol.Visuals.World.Enabled = v
-    end})
-
-    wrldstff:Toggle({Name = "Ambient", Callback = function(v)
-        XrgeLol.Visuals.World.Ambient.Enabled = v
-    end}):Colorpicker({Name = "Color", Default = Color3.fromRGB(0, 209, 0), Callback = function(v)
-        XrgeLol.Visuals.World.Ambient.Color = v
-    end})
-
-    wrldstff:Toggle({Name = "Clock Time", Callback = function(v)
-        XrgeLol.Visuals.World.ClockTime.Enabled = v
-    end})
-
-    wrldstff:Textbox({Name = "Clock Time", Default = "1", Callback = function(v)
-        XrgeLol.Visuals.World.ClockTime.Value = v
-    end})
-
-    wrldstff:Toggle({Name = "Brightness", Callback = function(v)
-        XrgeLol.Visuals.World.Brightness.Enabled = v
-    end})
-
-    wrldstff:Textbox({Name = "Brightness Amount", Default = "0", Callback = function(v)
-        XrgeLol.Visuals.World.Brightness.Value = v
-    end})
-
-    local onhtstff = XRGEVISUALS:Section({Name = "On Hit Effect", Side = "Right", Size = 225})
-
-    onhtstff:Toggle({Name = "Enabled", Callback = function(v)
-        XrgeLol.Visuals.OnHit.Enabled = v
-    end})
-
-    onhtstff:Toggle({Name = "Effect", Callback = function(v)
-        XrgeLol.Visuals.OnHit.Effect.Enabled = v
-    end}):Colorpicker({Name = "Color", Default = Color3.fromRGB(0, 255, 0), Callback = function(v)
-        XrgeLol.Visuals.OnHit.Effect.Color = v
-    end})
-
-    onhtstff:List({
-        Name = "Hit Effect",
-        Options = {"Bubble","Slash","Crescent Slash","Cum","Explosion","Slash","Atomic Effects"},
-        Default = "Cum",
-        Callback = function(v)
-            HitEffectsHAHAHHA = v
-        end
-    })
-
-    onhtstff:Toggle({Name = "Sound", Callback = function(v)
-        XrgeLol.Visuals.OnHit.Sound.Enabled = v
-    end})
-
-    onhtstff:Textbox({Name = "Volume", Default = "1", Callback = function(v)
-        XrgeLol.Visuals.OnHit.Sound.Volume = v
-    end})
-
-    onhtstff:List({
-        Name = "Hit Sound",
-        Options = {"applepay.wav","moan.wav","bell.wav","fatality.wav","amongus.wav","cock.wav","bubble.wav","cod.wav","bepis.wav"},
-        Default = "bubble.wav",
-        Callback = function(v)
-            XrgeLol.Visuals.OnHit.Sound.Value = v
+    local wrldstff = XRGEVISUALS:Section({Name = "World Settings", Side = "Left", Size = 340}
         end
     })
